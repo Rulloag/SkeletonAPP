@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +9,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomePage {
 
-  constructor(private route: ActivatedRoute) {}
+  title: string = "Bienvenido!";
+  subtitle: string = "Información Adicional!";
+  constructor(private route: ActivatedRoute, private navCtrl: NavController) { }
   nombre!: string;
-  ngOnInit(){
-    this.route.queryParams.subscribe(params =>{ 
-      if(params && params["nombre"]){
-        this.nombre=params["nombre"]; 
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      if (params && params["nombre"]) {
+        this.nombre = params["nombre"];
+      } else {
+        this.navCtrl.navigateForward('/login');
       }
-    });
+    })
   }
 }
