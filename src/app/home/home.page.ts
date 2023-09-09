@@ -8,11 +8,23 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  title: string = "Bienvenido"
+  subtitle: string = "";
+  fechaNacimiento: string = "";
+  nombre: string = "";
+  apellido: string = "";
 
-  title: string = "Bienvenido!";
-  subtitle: string = "Información Adicional!";
+  mostrarFechaNacimiento(): void {
+    console.log('Fecha de Nacimiento:', this.fechaNacimiento);
+    // Puedes mostrar la fecha en el formato deseado o realizar otras acciones aquí
+  }
+
   constructor(private route: ActivatedRoute, private navCtrl: NavController) { }
-  nombre!: string;
+  
+  getFechaNacimiento(): string {
+    return this.fechaNacimiento;
+  }
+  
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       if (params && params["nombre"]) {
